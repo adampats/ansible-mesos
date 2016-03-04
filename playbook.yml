@@ -1,0 +1,20 @@
+---
+- hosts: mesos
+  vars:
+    apt_repo: "deb http://repos.mesosphere.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
+  tasks:
+    - name: add mesos apt key
+      apt_key: keyserver=keyserver.ubuntu.com id=E56151BF state=present
+
+    - name: add mesos repo
+      apt_repository: repo='{{ apt_repo }}' state=present
+
+    - name: add openjdk-r ppa
+      apt_repository: repo='ppa:openjdk-r/ppa' state=present
+
+    - name: install packages
+      apt: pkg={{item}} state=present update_cache=yes
+      with_items:
+        - openjdk-8-jdk
+        - mesos
+        - marathon
