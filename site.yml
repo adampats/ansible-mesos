@@ -1,0 +1,16 @@
+---
+- name: Mesos test cluster bootstrapper.  Master, slave, zookeeper.
+  hosts: mesos
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  # don't forget ansible-playbook "ask" options: -k -K
+
+  vars:
+    user: "ubuntu"
+    key_file: "~/.ssh/keyfile.pub"
+
+  roles:
+    - auth
+    - install
+    - config

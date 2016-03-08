@@ -1,0 +1,12 @@
+---
+
+- name: append public key to ~/.ssh/authorized_keys
+  authorized_key:
+    user: "{{ user }}"
+    key: "{{ lookup('file', '{{ key_file }}') }}"
+
+- name: append nopasswd to sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^%sudo'
+    line: '%sudo	ALL=(ALL:ALL) NOPASSWD:ALL'

@@ -1,0 +1,4 @@
+hosts
+*.local
+*.pub
+*.pem

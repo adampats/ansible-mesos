@@ -1,0 +1,2 @@
+---
+apt_repo: "deb http://repos.mesosphere.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
