@@ -8,7 +8,15 @@
 
   vars:
     user: "ubuntu"
-    key_file: "~/.ssh/keyfile.pub"
+    key_file: "~/.ssh/id_boot2docker.pub"
+    zk_id: 1
+    zookeeper_hosts:
+      - host: "{{ inventory_hostname }}"
+        id: 1
+      - host: "{{ inventory_hostname }}"
+        id: 2
+      - host: "{{ inventory_hostname }}"
+        id: 3
 
   roles:
     - auth

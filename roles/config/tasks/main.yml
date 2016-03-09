@@ -1,0 +1,19 @@
+---
+
+- name: set zookeeper myid
+  template:
+    src: myid.j2
+    dest: /etc/zookeeper/conf/myid
+  notify:
+    - restart zookeeper
+
+- name: zoo.conf
+  template:
+    src: zoo.cfg.j2
+    dest: /etc/zookeeper/conf/zoo.cfg
+  notify:
+    - restart zookeeper
+# 
+#   {% for host in groups['app_servers'] %}
+#    {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+# {% endfor %}
