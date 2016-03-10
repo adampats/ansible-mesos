@@ -1,1 +1,5 @@
-{{ zk_id }}
+{% for server in play_hosts %}
+{% if server == inventory_hostname %}
+{{ loop.index }}
+{% endif %}
+{% endfor %}
