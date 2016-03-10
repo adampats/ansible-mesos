@@ -4,19 +4,12 @@
   remote_user: ubuntu
   become: yes
   become_method: sudo
-  # don't forget ansible-playbook "ask" options: -k -K
+  # don't forget ansible-playbook "ask" options on first run: -k -K
 
   vars:
     user: "ubuntu"
     key_file: "~/.ssh/id_boot2docker.pub"
-    zk_id: 1
-    zookeeper_hosts:
-      - host: "{{ inventory_hostname }}"
-        id: 1
-      - host: "{{ inventory_hostname }}"
-        id: 2
-      - host: "{{ inventory_hostname }}"
-        id: 3
+    zk_quorum: "{{ (((play_hosts | length) + 1) / 2 ) | round | int }}"
 
   roles:
     - auth

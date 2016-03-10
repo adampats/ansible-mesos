@@ -13,3 +13,17 @@
     dest: /etc/zookeeper/conf/zoo.cfg
   notify:
     - restart zookeeper
+
+- name: set mesos zk
+  template:
+    src: zk.j2
+    dest: /etc/mesos/zk
+
+- name: set mesos quorum size
+  template:
+    src: quorum
+    dest: /etc/mesos-master/quorum
+  notify:
+    - restart mesos-master
+    - restart mesos-slave
+    - restart marathon

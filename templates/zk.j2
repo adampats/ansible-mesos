@@ -1,0 +1,9 @@
+zk://
+{%- for server in play_hosts -%}
+{{- hostvars[server].ansible_eth0.ipv4.address }}:2181
+{%- if not loop.last -%}
+,
+{%- elif loop.last -%}
+/mesos
+{%- endif %}
+{% endfor %}
