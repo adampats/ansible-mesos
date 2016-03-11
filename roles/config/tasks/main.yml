@@ -27,3 +27,13 @@
     - restart mesos-master
     - restart mesos-slave
     - restart marathon
+
+- name: ensure services are up
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - zookeeper
+    - mesos-master
+    - mesos-slave
+    - marathon
