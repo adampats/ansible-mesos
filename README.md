@@ -15,7 +15,13 @@ terraform plan
 terraform apply
 ```
 
-Then populate your Ansible inventory file, `hosts`, with the hostnames and run:
+Then populate your Ansible inventory file, `hosts`, with the hostnames - here is a quick bash copy/paste-able output:
+
+```bash
+terraform show | grep -i public_dns | awk -F"= " '{print $2}'
+```
+
+Then run Ansible:
 
 ```bash
 # validate connectivity
