@@ -21,8 +21,25 @@
 
 - name: set mesos quorum size
   template:
-    src: quorum
+    src: quorum.j2
     dest: /etc/mesos-master/quorum
+
+- name: create hostname directories
+  file:
+    path: "{{ item }}"
+    recurse: yes
+    state: directory
+  with_items:
+    - /etc/mesos-master
+    - /etc/marathon/conf
+
+- name: set hostname files
+  template:
+    src: hostname.j2
+    dest: "{{ item }}"
+  with_items:
+    - /etc/mesos-master/hostname
+    - /etc/marathon/conf/hostname
   notify:
     - restart mesos-master
     - restart mesos-slave
