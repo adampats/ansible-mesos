@@ -27,3 +27,13 @@
     name: "{{ user }}"
     groups: "docker"
     append: yes
+
+- name: add the docker containerizer
+  template:
+    src: containerizers.j2
+    dest: /etc/mesos-slave/containerizers
+
+- name: set marathon executor timeout
+  template:
+    src: executor_registration_timeout.j2
+    dest: /etc/mesos-slave/executor_registration_timeout
