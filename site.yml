@@ -8,7 +8,7 @@
 
   vars:
     user: "ubuntu"
-    key_file: "~/.ssh/id_boot2docker.pub"
+    key_file: "~/.ssh/mykeyfile.pub"
     zk_quorum: "{{ (((play_hosts | length) + 1) / 2 ) | round | int }}"
 
   roles:
